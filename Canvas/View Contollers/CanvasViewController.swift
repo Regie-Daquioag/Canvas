@@ -66,16 +66,19 @@ class CanvasViewController: UIViewController {
         var imageView = sender.view as! UIImageView
         
         if sender.state == .began {
+            print("Face Gesture began")
             newlyCreatedFace = UIImageView(image: imageView.image)
             view.addSubview(newlyCreatedFace)
             newlyCreatedFace.center = imageView.center
             newlyCreatedFace.center.y += trayView.frame.origin.y
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center
         } else if sender.state == .changed {
+            print("Face Gesture is changing")
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
         } else if sender.state == .ended {
-            
+            print("Face Gesture ended")
         }
+       
     }
     
     
