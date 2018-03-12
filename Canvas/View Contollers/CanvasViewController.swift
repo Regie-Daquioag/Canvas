@@ -12,20 +12,23 @@ class CanvasViewController: UIViewController {
     
     @IBOutlet weak var trayView: UIView!
     
-    var newlyCreatedFace: UIImageView!
-    
     var trayOriginalCenter: CGPoint!
-    var trayDownOffset: CGFloat! = nil
+    
+    var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
+    
+    var newlyCreatedFace: UIImageView!
+    
+    var newlyCreatedFaceOriginalCenter: CGPoint!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         trayDownOffset = 160
-        trayUp = trayView.center // The initial position of the tray
-        trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset) // The position of the tray transposed down
+        trayUp = trayView.center
+        trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +62,20 @@ class CanvasViewController: UIViewController {
     }
     
     @IBAction func didPanFace(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: view)
+        var imageView = sender.view as! UIImageView
+        
+        if sender.state == .began {
+            newlyCreatedFace = UIImageView(image: imageView.image)
+            view.addSubview(newlyCreatedFace)
+            newlyCreatedFace.center = imageView.center
+            newlyCreatedFace.center.y += trayView.frame.origin.y
+            newlyCreatedFaceOriginalCenter = newlyCreatedFace.center
+        } else if sender.state == .changed {
+            newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
+        } else if sender.state == .ended {
+            
+        }
     }
     
     
