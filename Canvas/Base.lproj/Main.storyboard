@@ -18,8 +18,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbt-nj-QsP">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbt-nj-QsP">
                                 <rect key="frame" x="0.0" y="465" width="375" height="202"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="dead" translatesAutoresizingMaskIntoConstraints="NO" id="KBS-27-3xS">
                                         <rect key="frame" x="34" y="51" width="60" height="60"/>
@@ -77,20 +78,12 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="202" id="fLH-oI-T2B"/>
-                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="CNj-SZ-Eis" appends="YES" id="DIA-Ls-qAN"/>
                                 </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="wbt-nj-QsP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="HR7-zL-irt"/>
-                            <constraint firstItem="wbt-nj-QsP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="RcM-Nf-Vwh"/>
-                            <constraint firstItem="wbt-nj-QsP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cj8-zB-YbG"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
