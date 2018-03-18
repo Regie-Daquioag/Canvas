@@ -38,7 +38,7 @@ class CanvasViewController: UIViewController {
     
     @IBAction func didPanTray(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
-        var velocity = sender.velocity(in: view)
+        let velocity = sender.velocity(in: view)
         
         if sender.state == .began {
             print("Gesture began")
@@ -49,13 +49,15 @@ class CanvasViewController: UIViewController {
         } else if sender.state == .ended {
             print("Gesture ended")
             if velocity.y > 0 {
-                UIView.animate(withDuration: 0.3) {
-                    self.trayView.center = self.trayDown
-                }
+                UIView.animate(withDuration:0.004, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 1, options:[] ,
+                               animations: { () -> Void in
+                        self.trayView.center = self.trayDown
+                }, completion: nil)
             }else {
-                UIView.animate(withDuration: 0.3) {
-                    self.trayView.center = self.trayUp
-                }
+                UIView.animate(withDuration:0.004, delay: 0, usingSpringWithDamping: 0.09, initialSpringVelocity: 1, options:[] ,
+                               animations: { () -> Void in
+                                self.trayView.center = self.trayUp
+                }, completion: nil)
             }
         }
         
@@ -63,12 +65,14 @@ class CanvasViewController: UIViewController {
     
     @IBAction func didPanFace(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
-        var imageView = sender.view as! UIImageView
+        let imageView = sender.view as! UIImageView
         
         if sender.state == .began {
             print("Face Gesture began")
             newlyCreatedFace = UIImageView(image: imageView.image)
             view.addSubview(newlyCreatedFace)
+//            view.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            newlyCreatedFace.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             newlyCreatedFace.center = imageView.center
             newlyCreatedFace.center.y += trayView.frame.origin.y
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center
@@ -80,6 +84,7 @@ class CanvasViewController: UIViewController {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
         } else if sender.state == .ended {
             print("Face Gesture ended")
+            newlyCreatedFace.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
        
     }
@@ -89,10 +94,13 @@ class CanvasViewController: UIViewController {
         
         if sender.state == .began {
             newlyCreatedFace = sender.view as! UIImageView // to get the face that we panned on.
+             newlyCreatedFace.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
         } else if sender.state == .changed {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
-            
+        } else if sender.state == .ended {
+            print("Face Gesture ended")
+            newlyCreatedFace.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
     }
     

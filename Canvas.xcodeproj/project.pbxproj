@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CD94B8D32057268A00F8C084 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94B8D22057268A00F8C084 /* AppDelegate.swift */; };
-		CD94B8D52057268A00F8C084 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94B8D42057268A00F8C084 /* ViewController.swift */; };
 		CD94B8D82057268A00F8C084 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD94B8D62057268A00F8C084 /* Main.storyboard */; };
 		CD94B8DA2057268A00F8C084 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD94B8D92057268A00F8C084 /* Assets.xcassets */; };
 		CD94B8DD2057268A00F8C084 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD94B8DB2057268A00F8C084 /* LaunchScreen.storyboard */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		CD94B8CF2057268A00F8C084 /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD94B8D22057268A00F8C084 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD94B8D42057268A00F8C084 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD94B8D72057268A00F8C084 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD94B8D92057268A00F8C084 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD94B8DC2057268A00F8C084 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 		CD94B9012057281200F8C084 /* View Contollers */ = {
 			isa = PBXGroup;
 			children = (
-				CD94B8D42057268A00F8C084 /* ViewController.swift */,
 				CD94B9022057284000F8C084 /* CanvasViewController.swift */,
 			);
 			path = "View Contollers";
@@ -270,7 +267,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD94B8D52057268A00F8C084 /* ViewController.swift in Sources */,
 				CD94B9032057284000F8C084 /* CanvasViewController.swift in Sources */,
 				CD94B8D32057268A00F8C084 /* AppDelegate.swift in Sources */,
 			);
