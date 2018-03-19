@@ -49,7 +49,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I was able to add pinching to images but for some reason, the scale doesn't stay if I were to move the image. So I just ended up commenting it out.
+We were able to add pinching to images but for some reason, the scale doesn't stay if were were to move the image. So we just ended up commenting it out.
 
 ## License
 
