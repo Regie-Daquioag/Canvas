@@ -14,6 +14,8 @@ class CanvasViewController: UIViewController {
     
     var trayOriginalCenter: CGPoint!
     
+    @IBOutlet weak var arrowImage: UIImageView!
+    
     var trayDownOffset: CGFloat!
     var trayUp: CGPoint!
     var trayDown: CGPoint!
@@ -22,10 +24,12 @@ class CanvasViewController: UIViewController {
     
     var newlyCreatedFaceOriginalCenter: CGPoint!
     
-
+//    @IBOutlet var pinchGestureRecognizer: UIPinchGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+//        pinchGestureRecognizer.delegate = self
         trayDownOffset = 160
         trayUp = trayView.center
         trayDown = CGPoint(x: trayView.center.x ,y: trayView.center.y + trayDownOffset)
@@ -34,6 +38,15 @@ class CanvasViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return true
+//    }
+    
+    @objc func didTapTwice(_ sender: UITapGestureRecognizer){
+        var imageView = sender.view as! UIImageView
+        imageView.removeFromSuperview()
     }
     
     @IBAction func didPanTray(_ sender: UIPanGestureRecognizer) {
@@ -53,11 +66,14 @@ class CanvasViewController: UIViewController {
                                animations: { () -> Void in
                         self.trayView.center = self.trayDown
                 }, completion: nil)
+                print("flipping time")
+                arrowImage.transform = CGAffineTransform(scaleX: 1, y: -1)
             }else {
                 UIView.animate(withDuration:0.004, delay: 0, usingSpringWithDamping: 0.09, initialSpringVelocity: 1, options:[] ,
                                animations: { () -> Void in
                                 self.trayView.center = self.trayUp
                 }, completion: nil)
+                arrowImage.transform = CGAffineTransform(scaleX: 1, y: 1)
             }
         }
         
@@ -79,6 +95,11 @@ class CanvasViewController: UIViewController {
             let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(newlyCreatedFacePan(_:)))
             newlyCreatedFace.isUserInteractionEnabled = true
             newlyCreatedFace.addGestureRecognizer(panGestureRecognizer)
+//            let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(didPinch(sender:)))
+//            newlyCreatedFace.addGestureRecognizer(pinchGestureRecognizer)
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapTwice(_:)))
+            tapGestureRecognizer.numberOfTapsRequired = 2
+            newlyCreatedFace.addGestureRecognizer(tapGestureRecognizer)
         } else if sender.state == .changed {
             print("Face Gesture is changing")
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
@@ -93,21 +114,25 @@ class CanvasViewController: UIViewController {
         let translation = sender.translation(in: view)
         
         if sender.state == .began {
+            print("Newly Created Face Gesture began")
             newlyCreatedFace = sender.view as! UIImageView // to get the face that we panned on.
-             newlyCreatedFace.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            newlyCreatedFace.isUserInteractionEnabled = true
+            newlyCreatedFace.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             newlyCreatedFaceOriginalCenter = newlyCreatedFace.center // so we can offset by translation later.
         } else if sender.state == .changed {
             newlyCreatedFace.center = CGPoint(x: newlyCreatedFaceOriginalCenter.x + translation.x, y: newlyCreatedFaceOriginalCenter.y + translation.y)
         } else if sender.state == .ended {
-            print("Face Gesture ended")
+            print("Newly Creted Face Gesture ended")
             newlyCreatedFace.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
     }
     
-    
-    
-    
-    
-    
+//    @IBAction func didPinch(sender: UIPinchGestureRecognizer) {
+//        let scale = sender.scale
+//        newlyCreatedFace = sender.view as! UIImageView // to get the face that we panned on.
+//         newlyCreatedFace.isUserInteractionEnabled = true
+//        newlyCreatedFace.transform = CGAffineTransform(scaleX: scale.advanced(by: 1), y:1)
+//        sender.scale = 1
+//    }
     
 }
